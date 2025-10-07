@@ -8,13 +8,16 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    @include('layouts.navbar')
+    {{-- Navbar --}}
+    @include('components.navbar')
 
-    <div class="container flex-grow-1 mt-4">
+    {{-- Main content --}}
+    <main class="flex-grow-1 container mt-4">
         @yield('content')
-    </div>
+    </main>
 
-    @include('layouts.footer')
+    {{-- Footer --}}
+    @include('components.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -1,11 +1,10 @@
 <footer class="bg-dark text-white text-center py-3 mt-auto fancy-footer">
-    <div class="container">
-        <small>&copy; {{ date('Y') }} Sistem Manajemen Pengguna</small>
-    </div>
+  <div class="container">
+      <small>&copy; {{ date('Y') }} Sistem Manajemen Pengguna</small>
+  </div>
 </footer>
 
 <style>
-  /* Footer style */
   .fancy-footer {
     background: linear-gradient(90deg, #0d6efd, #6610f2);
     box-shadow: 0 -2px 8px rgba(0,0,0,0.4);
@@ -25,7 +24,6 @@
     animation: glow 2s infinite alternate;
   }
 
-  /* Animasi glow */
   @keyframes glow {
     from { text-shadow: 0 0 5px #ff6ec4, 0 0 10px #7873f5; }
     to { text-shadow: 0 0 15px #ff6ec4, 0 0 25px #7873f5; }

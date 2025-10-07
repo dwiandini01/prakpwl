@@ -1,49 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
-
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="fw-bold text-primary">
-            <i class="bi bi-people-fill"></i> Daftar User
-        </h2>
-        <a href="{{ route('user.create') }}" class="btn btn-success shadow-sm">
-            <i class="bi bi-person-plus"></i> Tambah User
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold text-primary m-0">📋 List Users</h1>
+        <a href="{{ route('user.create') }}" class="btn btn-lg btn-primary shadow-sm rounded-pill">
+            ➕ Add Users
         </a>
     </div>
 
-    @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
-            <i class="bi bi-check-circle-fill"></i> {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    @endif
-
     <div class="card shadow-lg border-0 rounded-4">
         <div class="card-body">
-            <table class="table table-hover table-striped align-middle text-center">
-                <thead class="table-dark">
+            <table class="table table-hover align-middle text-center">
+                <thead class="table-primary">
                     <tr>
-                        <th>Id</th>
-                        <th>Nama</th>
-                        <th>NIM</th>
-                        <th>Kelas</th>
+                        <th scope="col" style="width: 50px;">id</th>
+                        <th scope="col" style="width: 100px;">Nama</th>
+                        <th scope="col" style="width: 100px;">NPM</th>
+                        <th scope="col" style="width: 100px;">Kelas</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($users as $u)
+                    @forelse ($users as $user)
                         <tr>
-                            <td>{{ $u->id }}</td>
-                            <td class="fw-semibold text-primary">{{ $u->nama }}</td>
+                            <td>{{ $user->id }}</td>
+                            <td class="text-start">{{ $user->nama }}</td> {{-- Isi rata kiri --}}
+                            <td>{{ $user->nim }}</td>
                             <td>
-                                <span class="badge bg-info text-dark px-3 py-2">{{ $u->nim }}</span>
+                                <span class="badge bg-success px-3 py-2 rounded-pill">
+                                    {{ $user->nama_kelas }}
+                                </span>
                             </td>
-                            <td>{{ $u->kelas->nama_kelas ?? '-' }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-muted">
-                                <i class="bi bi-info-circle"></i> Belum ada data user
+                            <td colspan="4" class="text-center text-muted">
+                                Upss tidak ada data pengguna 
                             </td>
                         </tr>
                     @endforelse
@@ -51,14 +43,5 @@
             </table>
         </div>
     </div>
-
 </div>
-
-{{-- CSS tambahan agar lebih cantik --}}
-<style>
-    .table-hover tbody tr:hover {
-        background-color: rgba(13, 110, 253, 0.08);
-        transition: all 0.2s ease-in-out;
-    }
-</style>
 @endsection

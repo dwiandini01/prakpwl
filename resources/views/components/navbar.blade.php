@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark shadow-sm" 
+<!-- NAVBAR UTAMA -->
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm"
      style="background: linear-gradient(90deg, #0d6efd, #6610f2);">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center fs-2 fw-bolder text-uppercase fancy-brand" href="#">
@@ -15,11 +16,13 @@
             <i class="bi bi-people-fill"></i> User
           </a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link fw-semibold px-3 rounded" href="{{ route('profile') }}">
             <i class="bi bi-person-circle"></i> Profile
           </a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link fw-semibold px-3 rounded" href="#">
             <i class="bi bi-box-arrow-right"></i> Logout
@@ -30,8 +33,8 @@
   </div>
 </nav>
 
+
 <style>
-  /* Style untuk MyApp */
   .fancy-brand {
     background: linear-gradient(45deg, #ff6ec4, #7873f5);
     -webkit-background-clip: text;

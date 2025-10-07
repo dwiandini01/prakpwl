@@ -1,49 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4">
-    <h2>Tambah User</h2>
+<div class="container">
+    <h1>Add new user</h1>
 
-    {{-- Tampilkan error validasi --}}
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $err)
-                    <li>{{ $err }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <form action="{{ route('user.store') }}" method="POST">
+    <form action="{{ route('user.store') }}" method="POST" class="mb-5">
         @csrf
 
-        {{-- Nama --}}
         <div class="mb-3">
-            <label for="nama" class="form-label">Nama</label>
-            <input type="text" name="nama" id="nama" class="form-control" value="{{ old('nama') }}" required>
+            <label for="nama" class="form-label">Nama:</label>
+            <input type="text" id="nama" name="nama" class="form-control" required>
         </div>
 
-        {{-- NIM --}}
         <div class="mb-3">
-            <label for="nim" class="form-label">NIM</label>
-            <input type="text" name="nim" id="nim" class="form-control" value="{{ old('nim') }}" required>
+            <label for="npm" class="form-label">NPM:</label>
+            <input type="text" id="npm" name="npm" class="form-control" required>
         </div>
 
-        {{-- Pilih Kelas --}}
         <div class="mb-3">
-            <label for="kelas_id" class="form-label">Kelas</label>
-            <select name="kelas_id" id="kelas_id" class="form-control" required>
-                <option value=""></option>
-                @foreach($kelas as $k)
-                    <option value="{{ $k->id }}">{{ $k->nama_kelas }}</option>
+            <label for="kelas_id" class="form-label">Kelas:</label>
+            <select name="kelas_id" id="kelas_id" class="form-select" required>
+                @foreach ($kelas as $kelasItem)
+                    <option value="{{ $kelasItem->id }}">
+                        {{ str_replace('Kelas ', '', $kelasItem->nama_kelas) }}
+                    </option>
                 @endforeach
             </select>
         </div>
 
-        {{-- Tombol --}}
-        <button type="submit" class="btn btn-success">Simpan</button>
-        <a href="{{ route('user.index') }}" class="btn btn-secondary">Kembali</a>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 @endsection

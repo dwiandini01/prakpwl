@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -20,8 +21,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->userModel->create([
-            'nama' => $request->input('nama'),
-            'nim' => $request->input('nim'),   
+            'nama'     => $request->input('nama'),
+            'nim'      => $request->input('npm'),   // ambil dari form 'npm', simpan ke kolom 'nim'
             'kelas_id' => $request->input('kelas_id'),
         ]);
 
@@ -30,10 +31,17 @@ class UserController extends Controller
 
     public function index()
     {
+        $users = DB::table('user')
+            ->join('kelas', 'user.kelas_id', '=', 'kelas.id')
+            ->select('user.*', 'kelas.nama_kelas')
+            ->orderBy('user.id', 'asc') // ✅ id berurutan
+            ->get();
+
         $data = [
             'title' => 'List User',
-            'users' => $this->userModel->getUser(),
+            'users' => $users,
         ];
+
         return view('list_user', $data);
     }
 

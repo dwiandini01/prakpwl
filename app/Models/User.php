@@ -3,27 +3,25 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class UserModel extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
 
-    // Kalau kamu pakai tabel 'users' default Laravel, biarkan saja
-    // Kalau pakai tabel lain (misalnya 'user'), tambahkan:
-    // protected $table = 'user';
+    // Pakai tabel 'user'
+    protected $table = 'user';  
+    protected $fillable = ['nama', 'nim', 'kelas_id'];
 
-    protected $fillable = [
-        'nama',   // ganti dari 'name' ke 'nama'
-        'nim',
-        'kelas_id', // simpan foreign key ke tabel kelas
-    ];
-
-    // Relasi ke tabel kelas
     public function kelas()
     {
         return $this->belongsTo(Kelas::class, 'kelas_id');
+    }
+
+    public function getUser()
+    {
+        return $this->join('kelas', 'kelas.id', '=', 'user.kelas_id')
+            ->select('user.*', 'kelas.nama_kelas as nama_kelas')
+            ->get();
     }
 }
