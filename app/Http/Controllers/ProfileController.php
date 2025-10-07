@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 
 {
-    public function profile($Nama = "", $NPM = "", $Kelas = "") {  
+    public function profile($NAMA = "", $KELAS = "", $NPM = "") {  
         $data = [
-            'Nama' => $Nama,
-            'NPM' => $NPM,
-            'Kelas' => $Kelas
+            'NAMA' => $NAMA,
+            'KELAS' => $KELAS,
+            'NPM' => $NPM
         ];
         return view('profile', $data);  
     }
