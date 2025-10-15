@@ -9,10 +9,18 @@ class Kelas extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $table = 'kelas';
+    protected $fillable = ['nama_kelas'];
 
-    public function user()
+    // Relasi ke tabel user
+    public function users()
     {
         return $this->hasMany(UserModel::class, 'kelas_id');
+    }
+
+    // Ambil semua data kelas
+    public function getKelas()
+    {
+        return $this->all();
     }
 }
