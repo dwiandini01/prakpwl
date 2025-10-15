@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
-
 {
-    public function profile($Nama = "", $NPM = "", $Kelas = "") {  
+    public function profile($NAMA = "", $KELAS = "", $NPM = "")
+    {
         $data = [
-            'Nama' => $Nama,
+            'NAMA' => $NAMA,
+            'KELAS' => $KELAS,
             'NPM' => $NPM,
-            'Kelas' => $Kelas
         ];
-        return view('profile', $data);  
+
+        return view('profile', $data);
     }
 }
